@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+
 namespace DAL.Models
 {
     public class DataAccess<T> : IDataAccess<T> where T : class
@@ -27,11 +28,14 @@ namespace DAL.Models
             }
         }
 
-        public void Update(T item)
+        public void Update(int id, T item)
         {
             using (con = new SqlConnection(Helper.Constr(_className)))
             {
-                con.Execute("Update", item, commandType: CommandType.StoredProcedure);
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.AddDynamicParams(item);
+                parameters.AddDynamicParams(id);
+                con.Execute("Update", parameters, commandType: CommandType.StoredProcedure);
             }
         }
 

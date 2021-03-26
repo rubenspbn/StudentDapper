@@ -1,9 +1,5 @@
 ﻿using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Models
 {
@@ -34,9 +30,9 @@ namespace BLL.Models
             return _data.Read(id);
         }
 
-        public void Update(T item)
+        public void Update(int id,T item)
         {
-            _data.Update(item);
+            _data.Update(id,item);
         }
     }
 }

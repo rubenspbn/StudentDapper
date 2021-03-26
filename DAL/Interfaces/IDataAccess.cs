@@ -8,6 +8,6 @@ namespace DAL.Interfaces
         T Read(int id);
         void Delete(int id);
         void Create(T item);
-        void Update(T item);
+        void Update(int id,T item);
     }
 }
