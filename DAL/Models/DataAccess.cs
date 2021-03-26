@@ -10,7 +10,7 @@ namespace DAL.Models
     public class DataAccess<T> : IDataAccess<T> where T : class
     {
         private IDbConnection con;
-        private string _className = typeof(T).Name;
+        private readonly string _className = typeof(T).Name;
         public void Create(T item)
         {
             using (con = new SqlConnection(Helper.Constr(_className)))
