@@ -9,10 +9,6 @@ namespace BOL.Models
 {
     public class Student
     {
-        public Student()
-        {
-            ID = new Guid();
-        }
         [Key]
         [ScaffoldColumn(false)]
         public Guid ID { get; set; }
@@ -20,7 +16,6 @@ namespace BOL.Models
         public string Firstname { get; set; }
         [Required(ErrorMessage = "This field is required")]
         public string Lastname { get; set; }
-        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(ErrorMessage = "This field is required")]

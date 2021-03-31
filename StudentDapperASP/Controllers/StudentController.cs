@@ -50,7 +50,7 @@ namespace StudentDapperASP.Controllers
         // GET: Student/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            return View(await _stuRepo.GetAsync(id));
         }
 
         // POST: Student/Edit/5
@@ -70,19 +70,19 @@ namespace StudentDapperASP.Controllers
         }
 
         // GET: Student/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            return View(await _stuRepo.GetAsync(id));
         }
 
         // POST: Student/Delete/5
         [HttpPost]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(Student student)
         {
             try
             {
                 // TODO: Add delete logic here
-                await _stuRepo.DeleteRowAsync(id);
+                await _stuRepo.DeleteRowAsync(student.ID);
                 return RedirectToAction("Students");
             }
             catch

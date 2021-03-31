@@ -46,7 +46,7 @@ namespace DAL.Models
         {
             using (var con = CreateConnection())
             {
-                string sql = $"DELETE FROM * FROM {_tableName} WHERE Id = @Id";
+                string sql = $"DELETE FROM {_tableName} WHERE Id = @Id";
                 await con.QueryAsync<T>(sql, new { Id = id });
             }
         }
@@ -93,7 +93,7 @@ namespace DAL.Models
         {
             return (
                     from prop in properties
-                        //get attributes from propertie
+                    //get attributes from property
                     let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
                     //check if there are any attributes OR the first attribute is not ignore
                     where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "ignore"
@@ -105,9 +105,17 @@ namespace DAL.Models
         {
             StringBuilder InsertSQL = new StringBuilder($"INSERT INTO {_tableName} (");
             List<string> props = GenerateListProperties(properties);
-            props.ForEach(p => InsertSQL.Append($"[{p}],"));
+            props.ForEach(p =>
+            {
+                if (!p.Equals("ID")) //ID GETS HANLED BY SQL SERVER
+                    InsertSQL.Append($"[{p}],");
+            });
             InsertSQL.Remove(InsertSQL.Length - 1, 1).Append(") VALUES ("); // last comma
-            props.ForEach(p => InsertSQL.Append($"{p},"));
+            props.ForEach(p =>
+            {
+                if (!p.Equals("ID")) //ID GETS HANLED BY SQL SERVER
+                    InsertSQL.Append($"@{p},");
+            });
             InsertSQL.Remove(InsertSQL.Length - 1, 1).Append(")"); // last comma
             return InsertSQL.ToString();
         }
@@ -117,7 +125,7 @@ namespace DAL.Models
             List<string> props = GenerateListProperties(properties);
             props.ForEach(p =>
             {
-                if (!p.Equals("Id")) //Don't change id
+                if (!p.Equals("ID")) //Don't change id
                     UpdateSQL.Append($"{p}=@{p},");
             });
             UpdateSQL.Remove(UpdateSQL.Length - 1, 1).Append(" WHERE Id=@Id"); // last comma
