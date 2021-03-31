@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDataAccess.cs" />
-    <Compile Include="Models\DataAccess.cs" />
+    <Compile Include="Interfaces\IGenericDataAccess.cs" />
+    <Compile Include="Models\GenericDataAccess.cs" />
+    <Compile Include="Models\StudentDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,5 +58,6 @@
       <Name>BOL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,6 +5,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,17 +13,16 @@ namespace StudentDapperASP.Controllers
 {
     public class StudentController : Controller
     {
-        IDataAccess<Student> _stuRepo = new GenericRepository<Student>(new DataAccess<Student>());
+        private StudentRepository _stuRepo = new StudentRepository();
         // GET: Student
-        public ActionResult Index()
+        public async Task<ActionResult> Students()
         {
-            return View(_stuRepo.GetAll());
+            return View(await _stuRepo.GetAllAsync());
         }
-
         // GET: Student/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(Guid id)
         {
-            return View(_stuRepo.Read(id));
+            return View(await _stuRepo.GetAsync(id));
         }
 
         // GET: Student/Create
@@ -33,13 +33,13 @@ namespace StudentDapperASP.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(Student student)
+        public async Task<ActionResult> Create(Student student)
         {
             try
             {
                 // TODO: Add insert logic here
-                _stuRepo.Create(student);
-                return RedirectToAction("Index");
+                await _stuRepo.InsertAsync(student);
+                return RedirectToAction("Students");
             }
             catch
             {
@@ -48,20 +48,20 @@ namespace StudentDapperASP.Controllers
         }
 
         // GET: Student/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
             return View();
         }
 
         // POST: Student/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Student student)
+        public async Task<ActionResult> Edit(Student student)
         {
             try
             {
                 // TODO: Add update logic here
-                _stuRepo.Update(id,student);
-                return RedirectToAction("Index");
+                await _stuRepo.UpdateAsync(student);
+                return RedirectToAction("Students");
             }
             catch
             {
@@ -77,13 +77,13 @@ namespace StudentDapperASP.Controllers
 
         // POST: Student/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                await _stuRepo.DeleteRowAsync(id);
+                return RedirectToAction("Students");
             }
             catch
             {
