@@ -42,6 +42,5 @@ namespace BLL.Models
         {
             await SDA.UpdateAsync(obj);
         }
-
     }
 }
