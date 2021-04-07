@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public class StudentDataAccess:GenericDataAccess<Student>
+    public class TestDataAccess : GenericDataAccess<Test>
     {
-        public StudentDataAccess() : base("Student") { }
+        public TestDataAccess() : base("Test")
+        {
+        }
     }
 }

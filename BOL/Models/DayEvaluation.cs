@@ -11,7 +11,7 @@ namespace BOL.Models
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
@@ -41,6 +41,6 @@ namespace BOL.Models
         public bool AsksTooMuch { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Student")]
-        public int StudentID { get; set; }
+        public Guid StudentID { get; set; }
     }
 }

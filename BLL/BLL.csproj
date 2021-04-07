@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IStudentRepository.cs" />
     <Compile Include="Models\StudentRepository.cs" />
+    <Compile Include="Models\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

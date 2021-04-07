@@ -43,7 +43,7 @@ namespace StudentDapperASP.Controllers
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
@@ -65,7 +65,7 @@ namespace StudentDapperASP.Controllers
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
@@ -87,7 +87,7 @@ namespace StudentDapperASP.Controllers
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
     }

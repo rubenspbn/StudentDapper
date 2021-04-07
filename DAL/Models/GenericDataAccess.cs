@@ -33,7 +33,7 @@ namespace DAL.Models
         }
         #endregion
         #region CRUD
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             using (var con = CreateConnection())
             {

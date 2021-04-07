@@ -47,6 +47,7 @@
     <Compile Include="Interfaces\IGenericDataAccess.cs" />
     <Compile Include="Models\GenericDataAccess.cs" />
     <Compile Include="Models\StudentDataAccess.cs" />
+    <Compile Include="Models\TestDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

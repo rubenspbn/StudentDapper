@@ -12,12 +12,13 @@ namespace BOL.Models
     {
         [Key]
         [ScaffoldColumn(false)]
-        public int ID { get; set; }
+        public Guid ID { get; set; }
         [Required(ErrorMessage = "This field is required")]
         public string Name { get; set; }
+        [ForeignKey("Student")]
+        public Guid StudentID { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Student")]
-        public int StudentID { get; set; }
+        public Student Student { get; set; }
         public decimal? Score { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
