@@ -88,11 +88,11 @@ namespace DAL.Models
         }
         #endregion
         #region HELPERS
-        private IEnumerable<PropertyInfo> properties => typeof(T).GetProperties();
-        private static List<string> GenerateListProperties(IEnumerable<PropertyInfo> properties)
+        private IEnumerable<PropertyInfo> Properties => typeof(T).GetProperties();
+        private static List<string> GenerateListProperties(IEnumerable<PropertyInfo> Properties)
         {
             return (
-                    from prop in properties
+                    from prop in Properties
                     //get attributes from property
                     let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
                     //check if there are any attributes OR the first attribute is not ignore
@@ -104,7 +104,7 @@ namespace DAL.Models
         private string GenerateInsertSQL()
         {
             StringBuilder InsertSQL = new StringBuilder($"INSERT INTO {_tableName} (");
-            List<string> props = GenerateListProperties(properties);
+            List<string> props = GenerateListProperties(Properties);
             props.ForEach(p =>
             {
                 if (!p.Equals("ID")) //ID GETS HANLED BY SQL SERVER
@@ -122,7 +122,7 @@ namespace DAL.Models
         private string GenerateUpdateSQL()
         {
             StringBuilder UpdateSQL = new StringBuilder($"UPDATE {_tableName} SET ");
-            List<string> props = GenerateListProperties(properties);
+            List<string> props = GenerateListProperties(Properties);
             props.ForEach(p =>
             {
                 if (!p.Equals("ID")) //Don't change id

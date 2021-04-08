@@ -12,7 +12,7 @@ namespace BLL.Models
 {
     public class StudentRepository : /*IStudentRepository,*/ IGenericDataAccess<Student>
     {
-        private StudentDataAccess SDA = new StudentDataAccess();
+        private readonly StudentDataAccess SDA = new StudentDataAccess();
         public async Task DeleteRowAsync(Guid id)
         {
             await SDA.DeleteRowAsync(id);

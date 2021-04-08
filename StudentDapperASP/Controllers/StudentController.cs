@@ -13,7 +13,7 @@ namespace StudentDapperASP.Controllers
 {
     public class StudentController : Controller
     {
-        private StudentRepository _stuRepo = new StudentRepository();
+        private readonly StudentRepository _stuRepo = new StudentRepository();
         // GET: Student
         public async Task<ActionResult> Students()
         {

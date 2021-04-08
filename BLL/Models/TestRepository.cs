@@ -11,7 +11,7 @@ namespace BLL.Models
 {
     public class TestRepository : IGenericDataAccess<Test>
     {
-        private TestDataAccess TDA = new TestDataAccess();
+        private readonly TestDataAccess TDA = new TestDataAccess();
         public async Task DeleteRowAsync(Guid id)
         {
             await TDA.DeleteRowAsync(id);

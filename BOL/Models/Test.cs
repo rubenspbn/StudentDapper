@@ -18,13 +18,19 @@ namespace BOL.Models
         [ForeignKey("Student")]
         public Guid StudentID { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        public Student Student { get; set; }
         public decimal? Score { get; set; }
+        
+        private DateTime date;
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public DateTime Date
+        {
+            get { return date.Date; }
+            set { date = value; }
+        }
+
         [DataType(DataType.MultilineText)]
-        public string Remark { get; set; }
+        public string Remarks { get; set; }
         [Required(ErrorMessage = "This field is required")]
         public bool AsksTooMuch { get; set; }
     }
